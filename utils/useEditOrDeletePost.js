@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 const useEditOrDeletePost = (userPosts, setUserPosts) => {
   const router = useRouter();
   const handelEdit = async (post) => {
