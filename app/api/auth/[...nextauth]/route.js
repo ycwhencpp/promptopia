@@ -1,35 +1,36 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { connectToDb } from "@utils/database";
-import User from "@models/User";
-console.log("a");
+
+import User from "models/user";
+import { connectToDB } from "utils/database";
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await User.findOne({
-        email: session.email,
-      });
-
+      const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
+
       return session;
     },
-    async signIn({ profile }) {
+    async signIn({ user, account, profile, email, credentials }) {
       try {
-        await connectToDb();
-        const user = await User.findOne({ email: profile.email });
-        if (!user) {
+        await connectToDB();
+        const userExists = await User.findOne({ email: profile?.email });
+        // if not, create a new document and save user in MongoDB
+        if (userExists === null) {
           await User.create({
-            email: profile.email,
-            username: profile.name.replace(" ", "").toLowerCase(),
-            image: profile.picture,
+            email: profile?.email,
+            username: profile?.name.replace(/\s+/g, "").toLowerCase(),
+            image: user.image,
           });
         }
+
         return true;
       } catch (error) {
         console.log(error);
@@ -40,4 +41,3 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
-export const dynamic = "force-dynamic";
