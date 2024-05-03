@@ -13,6 +13,7 @@ const PostSchema = new Schema({
   user: {
     type: Schema.Types.objectId,
     ref: "User",
+    required: [true, "Tag is Required"],
   },
 });
 
