@@ -14,3 +14,5 @@ export const GET = async (request, { params: { id } }) => {
     return new Response("Error while fetching User", { status: 500 });
   }
 };
+
+export const dynamic = "force-dynamic";

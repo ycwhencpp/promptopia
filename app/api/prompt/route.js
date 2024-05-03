@@ -10,3 +10,4 @@ export const GET = async () => {
     return new Response("Error while fetching prompts", { status: 500 });
   }
 };
+export const dynamic = "force-dynamic";

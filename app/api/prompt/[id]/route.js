@@ -44,3 +44,4 @@ export const DELETE = async ({ params: { id } }) => {
     return new Response("Error while deleting post", { status: 500 });
   }
 };
+export const dynamic = "force-dynamic";

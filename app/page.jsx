@@ -7,5 +7,6 @@ const Home = () => {
     </section>
   )
 }
+export const fetchCache = 'force-no-store';
 
 export default Home
