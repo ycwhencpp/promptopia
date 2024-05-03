@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-import User from "models/user";
-import { connectToDB } from "utils/database";
+import User from "@models/User";
+import { connectToDb } from "@utils/database";
 
 const handler = NextAuth({
   providers: [
@@ -20,7 +20,7 @@ const handler = NextAuth({
     },
     async signIn({ user, account, profile, email, credentials }) {
       try {
-        await connectToDB();
+        await connectToDb();
         const userExists = await User.findOne({ email: profile?.email });
         // if not, create a new document and save user in MongoDB
         if (userExists === null) {
