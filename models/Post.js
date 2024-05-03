@@ -10,10 +10,10 @@ const PostSchema = new Schema({
     required: [true, "Tag is Required"],
     type: String,
   },
-  // user: {
-  //   type: Schema.Types.onjectId,
-  //   ref: "User",
-  // },
+  user: {
+    type: Schema.Types.objectId,
+    ref: "User",
+  },
 });
 
 const post = models.Post || model("Post", PostSchema);

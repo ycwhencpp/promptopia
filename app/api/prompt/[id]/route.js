@@ -4,7 +4,7 @@ import post from "@models/Post";
 export const GET = async (request, { params: { id } }) => {
   await connectToDb();
   try {
-    const currentPost = await post.findById(id);
+    const currentPost = await post.findById(id).populate("user");
     if (!currentPost) {
       return new Response("Post not found", { status: 404 });
     }

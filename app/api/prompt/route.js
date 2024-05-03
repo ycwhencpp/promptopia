@@ -3,7 +3,7 @@ import post from "@models/Post";
 export const GET = async () => {
   await connectToDb();
   try {
-    const allPrompts = await post.find({});
+    const allPrompts = await post.find({}).populate("user");
     return new Response(JSON.stringify(allPrompts), { status: 200 });
   } catch (error) {
     console.log(error);
