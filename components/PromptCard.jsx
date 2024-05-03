@@ -17,7 +17,6 @@ const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete })
 
   return (
     <div className="prompt_card">
-      <h1 className="font-satoshi font-semibold text-gray-900">{_id}</h1>
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center cursor-pointer gap-3">
           <Image
