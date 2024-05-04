@@ -31,14 +31,10 @@ export const PATCH = async (request, { params: { id } }) => {
   }
 };
 
-export const DELETE = async ({ params: { id } }) => {
+export const DELETE = async (request, { params: { id } }) => {
   await connectToDb();
   try {
-    const currentPost = post.findById(id);
-    if (!currentPost) {
-      return new Response("Post not found", { status: 404 });
-    }
-    await currentPost.delete();
+    const currentPost = post.findByIdAndDelete(id);
     return new Response("Post deleted", { status: 200 });
   } catch (error) {
     return new Response("Error while deleting post", { status: 500 });

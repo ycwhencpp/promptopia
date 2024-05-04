@@ -59,7 +59,7 @@ const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete })
             Edit
           </p>
           <p className="font-inter text-sm orange_gradient cursor-pointer" onClick={handelDelete}>
-            Delte
+            Delete
           </p>
         </div>
       )}
