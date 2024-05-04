@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete }) => {
+const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete, handelTagClick }) => {
   const { data: session } = useSession();
   const [isCopied, setIsCopied] = useState(false);
 

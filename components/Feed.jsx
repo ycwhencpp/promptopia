@@ -2,17 +2,11 @@
 import { useState } from "react";
 import PromptCardList from "@components/PromptCardList";
 import usePrompt from "@utils/usePrompt";
+import useSearchAndFilterPost from "@utils/useSearchAndFilterPost";
 const Feed = () => {
-    const [searchText, setSearchText] = useState("");
-    const handelSearchChange = (e) => {
-        setSearchText(e.target.value);
-        // render feed cards also accordingly
-    }
-    const data = usePrompt();
+    const [data, filteredPost, setFilteredPost] = usePrompt();
 
-    const handelTagClick = () => {
-      
-    }
+    const [searchText, handelSearchChange, handelTagClick] = useSearchAndFilterPost(data, setFilteredPost);
   return (
     <section className="feed">
       <form className="w-full relative flex-center">
@@ -22,10 +16,10 @@ const Feed = () => {
           required
           className="search_input peer"
           value={searchText}
-          onChange={handelSearchChange}
+          onChange={(e) => {handelSearchChange(e.target.value)}}
         />
       </form>
-      <PromptCardList data={data} handelTagClick = {handelTagClick()}/>
+      <PromptCardList data={filteredPost} handelTagClick = {handelTagClick}/>
     </section>
   );
 };
