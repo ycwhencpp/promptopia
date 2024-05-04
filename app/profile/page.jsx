@@ -11,7 +11,7 @@ const MyProfile = () => {
   const [userPosts, setUserPosts] = useUserPost(user?.id);
 
   const [handelEdit, handelDelete] = useEditOrDeletePost(userPosts, setUserPosts);
-  return <UserProfile name = {user?.name} desc = "Welcome to your perosnalized profile page" userPosts={userPosts} handelEdit = {handelEdit} handelDelete = {handelDelete}/>;
+  return <UserProfile name = 'My' desc = "Welcome to your perosnalized profile page" userPosts={userPosts} handelEdit = {handelEdit} handelDelete = {handelDelete}/>;
 };
 
 export default MyProfile;

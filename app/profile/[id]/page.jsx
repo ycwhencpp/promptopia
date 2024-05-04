@@ -32,8 +32,8 @@ const Profile = ({ params: { id } }) => {
 
   return (
     <UserProfile
-      name={user?.name}
-      desc="Welcome to your perosnalized profile page"
+      name={user?.username}
+      desc={`Checkout ${user?.username} amazing prompts and ideas and enhance your imagination.`}
       userPosts={userPosts}
       handelEdit={handelEdit}
       handelDelete={handelDelete}
