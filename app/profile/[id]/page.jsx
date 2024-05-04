@@ -15,12 +15,10 @@ const Profile = ({ params: { id } }) => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const response = await fetch(`/api/user/${id}`, {
-        method: "GET",
-      });
+      const response = await fetch(`/api/user/${id}`);
       if (response.status === 404) {
         router.push("/");
-      } else if (router.status === 200) {
+      } else {
         const data = await response.json();
         setUser(data);
       }
