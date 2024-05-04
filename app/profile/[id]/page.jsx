@@ -26,7 +26,7 @@ const Profile = ({ params: { id } }) => {
       }
     };
     id && getUserData();
-  }, [id]);
+  }, [router, id]);
 
   const [handelEdit, handelDelete] = useEditOrDeletePost(userPosts, setUserPosts);
 

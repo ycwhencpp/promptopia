@@ -56,7 +56,7 @@ const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete, h
         }}>
         #{tag}
       </p>
-      {author._id === session?.user.id && usePathname().startsWith("/profile") && (
+      {usePathname().startsWith("/profile") && author._id === session?.user.id  && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
           <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handelEdit}>
             Edit
