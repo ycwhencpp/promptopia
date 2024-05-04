@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete }) => {
   const { data: session } = useSession();
@@ -18,19 +19,21 @@ const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete })
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center cursor-pointer gap-3">
-          <Image
-            src={author?.image}
-            width={40}
-            height={40}
-            alt={author?.username + "profile"}
-            className="rounded-full object-contain"
-          />
-          <div className=" flex flex-col">
-            <h3 className="font-satoshi font-semibold text-gray-900">{author?.username}</h3>
-            <p className="font-inter text-sm text-gray-500">{author?.email}</p>
+        <Link href={`/profile/${author._id}`}>
+          <div className="flex-1 flex justify-start items-center cursor-pointer gap-3">
+            <Image
+              src={author?.image}
+              width={40}
+              height={40}
+              alt={author?.username + "profile"}
+              className="rounded-full object-contain"
+            />
+            <div className=" flex flex-col">
+              <h3 className="font-satoshi font-semibold text-gray-900">{author?.username}</h3>
+              <p className="font-inter text-sm text-gray-500">{author?.email}</p>
+            </div>
           </div>
-        </div>
+        </Link>
         <div
           className="copy_btn"
           onClick={() => {
@@ -53,7 +56,7 @@ const PromptCard = ({ _id, title, tag, user: author, handelEdit, handelDelete })
         }}>
         #{tag}
       </p>
-      { usePathname() === "/profile" && (
+      {author._id === session?.user.id && usePathname().startsWith("/profile") && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
           <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handelEdit}>
             Edit
