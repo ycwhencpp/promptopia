@@ -11,9 +11,8 @@ const PostSchema = new Schema({
     type: String,
   },
   user: {
-    type: Schema.Types.objectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "Tag is Required"],
   },
 });
 
